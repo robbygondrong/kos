@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Penghuni;
 use Illuminate\Http\Request;
+use App\Http\Controllers\DashboardUsersController;
+use App\Models\DashboardUserModel;
 
 class PenghuniController extends Controller
 {
@@ -30,10 +32,13 @@ class PenghuniController extends Controller
      */
     public function create()
     {
+
+
         return view(
             'backend.penghuni.create',
             [
-                'title' => 'Tambah Penghuni'
+                "title" => "Tambah Data User",
+                "data" => DashboardUserModel::where('level', '=', 0)->get()
             ]
         );
     }
@@ -92,7 +97,7 @@ class PenghuniController extends Controller
     {
         $data = [
             'title' => 'Update Data Penghuni',
-            'data' => Penghuni::where('id', $id)->first()
+            'data' => Penghuni::where('id_penghuni', $id)->first()
         ];
         return view('backend.penghuni.edit', $data);
     }
@@ -127,7 +132,7 @@ class PenghuniController extends Controller
             'telepon' => $request->telepon,
             'email' => $request->email,
         ];
-        Penghuni::where('id', $id)->update($data);
+        Penghuni::where('id_penghuni', $id)->update($data);
         return redirect()->to('/penghuni')->with('success', 'Berhasil Update Data');
     }
 
@@ -139,7 +144,7 @@ class PenghuniController extends Controller
      */
     public function destroy($id)
     {
-        Penghuni::where('id', $id)->delete();
+        Penghuni::where('id_penghuni', $id)->delete();
         return redirect('penghuni')->with('success', 'Data Berhasil di Hapus');
     }
 }

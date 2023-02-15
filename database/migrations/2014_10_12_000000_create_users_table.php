@@ -18,9 +18,10 @@ return new class extends Migration
             $table->string('nama', 30);
             $table->bigInteger('no_ktp')->unique();
             $table->string('email');
-            $table->integer('telepon');
+            $table->bigInteger('telepon');
+            $table->tinyInteger('level')->default(0);
             $table->timestamp('email_verified_at')->nullable();
-            $table->password('password');
+            $table->string('password');
             $table->rememberToken();
             $table->timestamps();
         });

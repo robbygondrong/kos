@@ -18,39 +18,24 @@
 
         <!-- De fault box -->
         <div class="box">
-            @include('backend.component.pesan')
             <div class="box box-primary">
                 <div class="box-header with-border">
                     <h3 class="box-title">{{ $title }}</h3>
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->
-                <form role="form" method="POST" action="{{ url('penghuni/' . $data->id_penghuni) }}">
+                <form role="form" method="POST" action="{{ url('/harga') }}">
                     @csrf
-                    @method('PUT')
                     <div class="box-body">
-
                         <div class="form-group">
-                            <label for="nama">Nama</label>
-                            <input type="varchar" name="nama" class="form-control" id="nama"
-                                value="{{ $data->penghuni }}" placeholder="Nama Lengkap">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Telepon</label>
-                            <input type="number" name="telepon" class="form-control" id="telepon"
-                                value="{{ $data->telepon }}" placeholder="Telp">
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email address</label>
-                            <input type="email" name="email" class="form-control" id="exampleInputEmail1"
-                                value="{{ $data->email }}" placeholder="Enter email">
+                            <label for="nominal">Nominal</label>
+                            <input type="number" name="nominal" class="form-control" id="nominal" placeholder="Rp...">
                         </div>
                     </div>
                     <!-- /.box-body -->
-
-
                     <div class="box-footer">
                         <button type="submit" class="btn btn-primary">Submit</button>
+                        <a href="{{ url('/harga') }}" class="btn btn-info">Back</a href="">
                     </div>
                 </form>
             </div>

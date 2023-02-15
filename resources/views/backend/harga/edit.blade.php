@@ -25,25 +25,14 @@
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->
-                <form role="form" method="POST" action="{{ url('penghuni/' . $data->id_penghuni) }}">
+                <form role="form" method="POST" action="{{ url('harga/' . $data->id_kamar) }}">
                     @csrf
                     @method('PUT')
                     <div class="box-body">
-
                         <div class="form-group">
-                            <label for="nama">Nama</label>
-                            <input type="varchar" name="nama" class="form-control" id="nama"
-                                value="{{ $data->penghuni }}" placeholder="Nama Lengkap">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Telepon</label>
-                            <input type="number" name="telepon" class="form-control" id="telepon"
-                                value="{{ $data->telepon }}" placeholder="Telp">
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email address</label>
-                            <input type="email" name="email" class="form-control" id="exampleInputEmail1"
-                                value="{{ $data->email }}" placeholder="Enter email">
+                            <label for="exampleInputEmail1">Nominal</label>
+                            <input type="number" name="nominal" class="form-control" id="nominal"
+                                value="{{ $data->nominal }}" placeholder="Telp">
                         </div>
                     </div>
                     <!-- /.box-body -->

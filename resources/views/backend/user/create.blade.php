@@ -22,6 +22,7 @@
                 <div class="box-header with-border">
                     <h3 class="box-title">{{ $title }}</h3>
                 </div>
+                @include('backend.component.pesan')
                 <!-- /.box-header -->
                 <!-- form start -->
                 <form role="form" method="POST" action="{{ url('/user') }}">
@@ -30,21 +31,27 @@
                         <div class="form-group">
                             <label for="nama">Nama</label>
                             <input type="varchar" name="nama" class="form-control" id="nama"
-                                placeholder="Nama Lengkap">
+                                value="{{ old('nama') }}" placeholder="Nama Lengkap">
                         </div>
                         <div class="form-group">
                             <label for="ktp">No KTP</label>
-                            <input type="number" name="ktp" class="form-control" id="ktp"
-                                placeholder="Nomor KTP">
+                            <input type="number" name="ktp" class="form-control" id="ktp" placeholder="Nomor KTP"
+                                value="{{ old('ktp') }}">
                         </div>
                         <div class="form-group">
                             <label for="email">Email address</label>
                             <input type="email" name="email" class="form-control" id="exampleInputEmail1"
-                                placeholder="Enter email">
+                                placeholder="Enter email" value="{{ old('email') }}">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Telepon</label>
-                            <input type="number" name="telepon" class="form-control" id="telepon" placeholder="Telp">
+                            <input type="number" name="telepon" class="form-control" id="telepon" placeholder="Telp"
+                                value="{{ old('telepon') }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Level</label>
+                            <input type="number" name="level" class="form-control" id="level" placeholder="level"
+                                value="{{ old('level') }}">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Password</label>
@@ -57,6 +64,7 @@
 
                     <div class="box-footer">
                         <button type="submit" class="btn btn-primary">Submit</button>
+                        <a href="{{ url('/user') }}" class="btn btn-info">Back</a>
                     </div>
                 </form>
             </div>

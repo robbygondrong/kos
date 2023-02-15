@@ -37,6 +37,7 @@
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
+                        @include('backend.component.pesan')
                         <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
 
                             <div class="row">
@@ -45,10 +46,11 @@
                                         role="grid" aria-describedby="example1_info">
                                         <thead>
                                             <tr role="row">
-                                                <th class="sorting_asc" tabindex="0" aria-controls="example1"
-                                                    rowspan="1" colspan="1" aria-sort="ascending"
-                                                    aria-label="Rendering engine: activate to sort column descending"
-                                                    style="width: 160.312px;">No</th>
+                                                <th class="sorting_asc " class="justify-content-center" tabindex="0"
+                                                    aria-controls="example1" rowspan="1" colspan="1"
+                                                    aria-sort="ascending"
+                                                    aria-label="Rendering engine: activate to sort column descending">No
+                                                </th>
                                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
                                                     colspan="1" aria-label="Browser: activate to sort column ascending"
                                                     style="width: 204.156px;">Nama</th>
@@ -60,6 +62,10 @@
                                                     colspan="1"
                                                     aria-label="Engine version: activate to sort column ascending"
                                                     style="width: 137.646px;">Email</th>
+                                                <th class="sorting d-inline" tabindex="0" aria-controls="example1"
+                                                    rowspan="1" colspan="1"
+                                                    aria-label="Engine version: activate to sort column ascending"
+                                                    style="width: 137.646px;">Action</th>
 
                                             </tr>
                                         </thead>
@@ -72,16 +78,16 @@
                                                     <td>{{ $data->penghuni }}</td>
                                                     <td>{{ $data->telepon }}</td>
                                                     <td>{{ $data->email }}</td>
-                                                    <td>
-                                                        <a href="{{ url('penghuni/' . $data->id . '/edit') }}"
-                                                            class="btn btn-warning">Edit</a>
+                                                    <td class="action">
+                                                        <a href="{{ url('penghuni/' . $data->id_penghuni . '/edit') }}"
+                                                            class="btn btn-warning ">Edit</a>
                                                         <form onsubmit="return confirm('Yakin akan menghapus data')"
                                                             class="d-inline" method="POST"
-                                                            action="{{ url('penghuni/' . $data->id) }}">
+                                                            action="{{ url('penghuni/' . $data->id_penghuni) }}">
                                                             @csrf
                                                             @method('DELETE')
-                                                            <button type="submit" name="submit"
-                                                                class="btn btn-danger">Delete</button>
+                                                            <button type="submit" name="submit" class="btn btn-danger "
+                                                                style="margin-left: 5px">Delete</button>
                                                         </form>
                                                     </td>
                                                 </tr>

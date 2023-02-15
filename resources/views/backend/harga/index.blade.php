@@ -3,7 +3,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            {{ $title }}
+            Blank page
             <small>it all starts here</small>
         </h1>
         <ol class="breadcrumb">
@@ -31,13 +31,13 @@
                 </div>
             </div>
             <div class="box-body">
-                @include('backend.component.pesan')
                 <div class="box">
                     <div class="box-header">
-                        <a href="{{ url('/user/create') }}" class="btn btn-primary">Tambah</a></a>
+                        <a href="{{ url('/harga/create') }}" class="btn btn-primary">Tambah</a></a>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
+                        @include('backend.component.pesan')
                         <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
 
                             <div class="row">
@@ -52,43 +52,28 @@
                                                     style="width: 160.312px;">No</th>
                                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
                                                     colspan="1" aria-label="Browser: activate to sort column ascending"
-                                                    style="width: 204.156px;">Nama</th>
-                                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
-                                                    colspan="1"
-                                                    aria-label="Platform(s): activate to sort column ascending"
-                                                    style="width: 187.219px;">KTP</th>
-                                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
-                                                    colspan="1"
+                                                    style="width: 204.156px;">Nominal</th>
+                                                <th class="sorting d-inline" tabindex="0" aria-controls="example1"
+                                                    rowspan="1" colspan="1"
                                                     aria-label="Engine version: activate to sort column ascending"
-                                                    style="width: 137.646px;">Email</th>
-                                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
-                                                    colspan="1" aria-label="CSS grade: activate to sort column ascending"
-                                                    style="width: 100px;">Telepon</th>
-                                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
-                                                    colspan="1" aria-label="CSS grade: activate to sort column ascending"
-                                                    style="width: 100px;">level</th>
-                                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
-                                                    colspan="1" aria-label="CSS grade: activate to sort column ascending"
-                                                    style="width: 100px;">Action</th>
+                                                    style="width: 137.646px;">Action</th>
+
                                             </tr>
                                         </thead>
                                         <tbody><?php
                                         $i = 1;
                                         ?>
-                                            @foreach ($user as $item)
+                                            @foreach ($data as $data)
                                                 <tr role="row" class="odd">
                                                     <td class="sorting_1">{{ $i++ }}</td>
-                                                    <td>{{ $item->nama }}</td>
-                                                    <td>{{ $item->no_ktp }}</td>
-                                                    <td>{{ $item->email }}</td>
-                                                    <td>{{ $item->telepon }}</td>
-                                                    <td>{{ $item->level }}</td>
+                                                    <td>{{ $data->nominal }}</td>
+
                                                     <td class="action">
-                                                        <a href="{{ url('user/' . $item->id_user . '/edit') }}"
-                                                            class="btn btn-warning ">Edit</a>
+                                                        <a href="{{ url('harga/' . $data->id_kamar . '/edit') }}"
+                                                            class="btn btn-warning">Edit</a>
                                                         <form onsubmit="return confirm('Yakin akan menghapus data')"
                                                             class="d-inline" method="POST"
-                                                            action="{{ url('user/' . $item->id_user) }}">
+                                                            action="{{ url('harga/' . $data->id_kamar) }}">
                                                             @csrf
                                                             @method('DELETE')
                                                             <button type="submit" name="submit" class="btn btn-danger "
@@ -97,6 +82,7 @@
                                                     </td>
                                                 </tr>
                                             @endforeach
+
                                         </tbody>
                                     </table>
                                 </div>

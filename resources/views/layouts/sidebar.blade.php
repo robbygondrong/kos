@@ -41,15 +41,15 @@
                     </span>
                 </a>
             </li>
-            <li>
+            <li class="{{ Request::is('penghuni*') ? 'active' : '' }}">
                 <a href="/penghuni"><i class="fa fa-th"></i><span>Penghuni</span>
                     <span class="pull-right-container">
                     </span>
                 </a>
             </li>
             <li>
-                <a href="pages/widgets.html">
-                    <i class="fa fa-th"></i> <span>Neraca Saldo</span>
+                <a href="/harga">
+                    <i class="fa fa-th"></i> <span>Harga Kamar</span>
                     <span class="pull-right-container">
                     </span>
                 </a>

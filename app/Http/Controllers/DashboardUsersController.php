@@ -19,7 +19,7 @@ class DashboardUsersController extends Controller
             [
                 "title" => "Users",
 
-                "user" => DashboardUserModel::user()
+                "user" => DashboardUserModel::All()
             ]
         );
     }
@@ -44,17 +44,40 @@ class DashboardUsersController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate(
+            [
+                'nama' => 'required',
+                'ktp' => 'required|min:16|max:16',
+
+                'telepon' => 'required|numeric',
+                'email' => 'required|email',
+                'level' => 'required|numeric',
+                'password' => 'required'
+            ],
+            [
+                'nama.required' => 'Nama Wajib di Isi',
+                'ktp.required' => 'KTP Wajib di Isi',
+                'ktp.min' => "KTP minimal 16 karakter",
+                'ktp.max' => ' KTP maximal 16 karakter',
+                'telepon.required' => 'Telepon Wajib di Isi',
+                'telepon.numeric' => 'Telepon Wajib diisi Angka',
+                'email.required' => 'Email Wajib di Isi',
+                'email.email' => 'Format Email yang dituliskan salah',
+                'level.required' => 'Level Wajib diisi',
+                'level.numeric' => ' Level Hanya angka yang bisa diisi'
+            ]
+        );
         $data = [
             'nama' => $request->nama,
             'no_ktp' => $request->ktp,
             'email' => $request->email,
             'password' => $request->password,
             'telepon' => $request->telepon,
-            'nama' => $request->nama,
+            'level' => $request->level,
 
         ];
         DashboardUserModel::create($data);
-        return redirect('/penghuni');
+        return redirect()->to('/user')->with('success', 'Berhasil Tambah Data');
     }
 
     /**
@@ -74,9 +97,13 @@ class DashboardUsersController extends Controller
      * @param  \App\Models\DashboardUserModel  $dashboardUserModel
      * @return \Illuminate\Http\Response
      */
-    public function edit(DashboardUserModel $dashboardUserModel)
+    public function edit($id)
     {
-        //
+        $data = [
+            'title' => 'Update Data Users',
+            'data' => DashboardUserModel::where('id_user', $id)->first()
+        ];
+        return view('backend.user.edit', $data);
     }
 
     /**
@@ -86,9 +113,41 @@ class DashboardUsersController extends Controller
      * @param  \App\Models\DashboardUserModel  $dashboardUserModel
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, DashboardUserModel $dashboardUserModel)
+    public function update(Request $request, $id_user)
     {
-        //
+
+        $request->validate(
+            [
+                'nama' => 'required',
+                'ktp' => 'required|min:16|max:16',
+
+                'telepon' => 'required|numeric',
+                'email' => 'required|email',
+                'level' => 'required|numeric',
+                'password' => 'required'
+            ],
+            [
+                'nama.required' => 'Nama Wajib di Isi',
+                'ktp.required' => 'KTP Wajib di Isi',
+                'ktp.min' => "KTP minimal 16 karakter",
+                'ktp.max' => ' KTP maximal 16 karakter',
+                'telepon.required' => 'Telepon Wajib di Isi',
+                'telepon.numeric' => 'Telepon Wajib diisi Angka',
+                'email.required' => 'Email Wajib di Isi',
+                'email.email' => 'Format Email yang dituliskan salah',
+                'level.required' => 'Level Wajib diisi',
+                'level.numeric' => ' Level Hanya angka yang bisa diisi'
+            ]
+        );
+        $data = [
+            'nama' => $request->nama,
+            'email' => $request->email,
+            'telepon' => $request->telepon,
+            'level' => $request->level,
+            'password' => $request->password,
+        ];
+        DashboardUserModel::where('id_user', $id_user)->update($data);
+        return redirect()->to('/user')->with('success', 'Berhasil Update Data');
     }
 
     /**
@@ -97,8 +156,9 @@ class DashboardUsersController extends Controller
      * @param  \App\Models\DashboardUserModel  $dashboardUserModel
      * @return \Illuminate\Http\Response
      */
-    public function destroy(DashboardUserModel $dashboardUserModel)
+    public function destroy($id)
     {
-        //
+        DashboardUserModel::where('id_user', $id)->delete();
+        return redirect('user')->with('success', 'Data Berhasil di Hapus');
     }
 }

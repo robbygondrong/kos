@@ -16,50 +16,55 @@
     <!-- Main content -->
     <section class="content">
 
-        <!-- De fault box -->
+        <!-- Default box -->
         <div class="box">
-            @include('backend.component.pesan')
             <div class="box box-primary">
                 <div class="box-header with-border">
                     <h3 class="box-title">{{ $title }}</h3>
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->
-                <form role="form" method="POST" action="{{ url('/penghuni') }}">
+                <form role="form" method="POST" action="{{ url('user/' . $data->id_user) }}">
                     @csrf
+                    @method('PUT')
                     <div class="box-body">
                         <div class="form-group">
                             <label for="nama">Nama</label>
-                            <select name="nama" id="">
-                                <option value="">--pilih penghuni--</option>
-                                @foreach ($data as $item)
-                                    <option value="{{ $item->nama }}">{{ $item->nama }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-
-
-                        {{-- <div class="form-group">
-                            <label for="nama">Nama</label>
                             <input type="varchar" name="nama" class="form-control" id="nama"
-                                placeholder="Nama Lengkap">
-                        </div> --}}
+                                placeholder="Nama Lengkap" value="{{ $data->nama }}">
+                        </div>
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Telepon</label>
-                            <input type="number" name="telepon" class="form-control" id="telepon" placeholder="Telp">
+                            <label for="ktp">No KTP</label>
+                            <input type="number" name="ktp" class="form-control" id="ktp" placeholder="Nomor KTP"
+                                value="{{ $data->no_ktp }}">
                         </div>
                         <div class="form-group">
                             <label for="email">Email address</label>
                             <input type="email" name="email" class="form-control" id="exampleInputEmail1"
-                                placeholder="Enter email">
+                                placeholder="Enter email" value="{{ $data->email }}">
                         </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Telepon</label>
+                            <input type="number" name="telepon" class="form-control" id="telepon" placeholder="Telp"
+                                value="{{ $data->telepon }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Level</label>
+                            <input type="number" name="level" class="form-control" id="level" placeholder="level"
+                                value="{{ $data->level }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Password</label>
+                            <input type="password" name="password" class="form-control" id="exampleInputPassword1"
+                                placeholder="********">
+                        </div>
+
                     </div>
                     <!-- /.box-body -->
 
-
                     <div class="box-footer">
                         <button type="submit" class="btn btn-primary">Submit</button>
-                        <a href="{{ url('/penghuni') }}" class="btn btn-info">Back</a>
+                        <a href="{{ url('/user') }}" class="btn btn-info">Back</a href="">
                     </div>
                 </form>
             </div>
