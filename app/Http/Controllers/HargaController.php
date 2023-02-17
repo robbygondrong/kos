@@ -9,6 +9,8 @@ use Illuminate\Http\Response;
 
 class HargaController extends Controller
 {
+
+
     /**
      * Display a listing of the resource.
      *
@@ -74,13 +76,13 @@ class HargaController extends Controller
      * @param  \App\Models\Harga  $harga
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Harga $harga)
     {
-        $data = [
-            'title' => 'Update Harga Kamar',
-            'data' => Harga::where('id_kamar', $id)->first()
-        ];
-        return view('backend.harga.edit', $data);
+
+        return view('backend.harga.edit', [
+            'harga' => $harga,
+            'title' => 'Update data title'
+        ]);
     }
 
     /**
@@ -90,20 +92,23 @@ class HargaController extends Controller
      * @param  \App\Models\Harga $harga
      * @return Response
      */
-    public function update(UpdateHargaRequest $request, $id)
+    public function update(UpdateHargaRequest $request, Harga $harga)
     {
+        $title = 'Update Harga Kamar';
         $request->validate(
             ['nominal' => 'required'],
             ['nominal.required' => 'Nominal Wajib di Isi']
 
         );
 
+
         $data = [
             'nominal' => $request->nominal,
 
         ];
-        Harga::where('id_kamar', $id)->update($data);
-        return redirect()->to('/harga')->with('success', 'Berhasil Update Data');
+
+        Harga::where('id_harga', $harga->id_harga)->update($data);
+        return redirect()->to('/harga',)->with('success', 'Berhasil Update Data');
     }
 
     /**
@@ -112,9 +117,9 @@ class HargaController extends Controller
      * @param  \App\Models\Harga  $harga
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(harga $harga)
     {
-        Harga::where('id_kamar', $id)->delete();
+        Harga::destroy($harga->id_harga);
         return redirect('harga')->with('success', 'Data Berhasil di Hapus');
     }
 }

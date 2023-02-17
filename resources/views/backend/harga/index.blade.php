@@ -33,7 +33,7 @@
             <div class="box-body">
                 <div class="box">
                     <div class="box-header">
-                        <a href="{{ url('/harga/create') }}" class="btn btn-primary">Tambah</a></a>
+                        <a href="{{ route('harga.create') }}" class="btn btn-primary">Tambah</a></a>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
@@ -69,11 +69,11 @@
                                                     <td>{{ $data->nominal }}</td>
 
                                                     <td class="action">
-                                                        <a href="{{ url('harga/' . $data->id_kamar . '/edit') }}"
+                                                        <a href="{{ url('harga/' . $data->id_harga . '/edit') }}"
                                                             class="btn btn-warning">Edit</a>
                                                         <form onsubmit="return confirm('Yakin akan menghapus data')"
                                                             class="d-inline" method="POST"
-                                                            action="{{ url('harga/' . $data->id_kamar) }}">
+                                                            action="{{ url('harga/' . $data->id_harga) }}">
                                                             @csrf
                                                             @method('DELETE')
                                                             <button type="submit" name="submit" class="btn btn-danger "

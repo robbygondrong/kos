@@ -19,7 +19,7 @@
         <!-- Default box -->
         <div class="box">
             <div class="box-header with-border">
-                {{-- <h3 class="box-title">{{ $data['title'] }}</h3> --}}
+                <h3 class="box-title">{{ $title }}</h3>
 
                 <div class="box-tools pull-right">
                     <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
@@ -33,7 +33,7 @@
             <div class="box-body">
                 <div class="box">
                     <div class="box-header">
-                        <a href="{{ url('/penghuni/create') }}" class="btn btn-primary">Tambah</a></a>
+                        <a href="{{ url('/fasilitas/create') }}" class="btn btn-primary">Tambah</a></a>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
@@ -53,20 +53,11 @@
                                                 </th>
                                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
                                                     colspan="1" aria-label="Browser: activate to sort column ascending"
-                                                    style="width: 204.156px;">Nama</th>
-                                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
-                                                    colspan="1"
-                                                    aria-label="Platform(s): activate to sort column ascending"
-                                                    style="width: 187.219px;">Telepon</th>
-                                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
-                                                    colspan="1"
-                                                    aria-label="Engine version: activate to sort column ascending"
-                                                    style="width: 137.646px;">Email</th>
+                                                    style="width: 204.156px;">Nama Fasilitas</th>
                                                 <th class="sorting d-inline" tabindex="0" aria-controls="example1"
                                                     rowspan="1" colspan="1"
                                                     aria-label="Engine version: activate to sort column ascending"
                                                     style="width: 137.646px;">Action</th>
-
                                             </tr>
                                         </thead>
                                         <tbody><?php
@@ -74,18 +65,14 @@
                                         ?>
                                             @foreach ($data as $item)
                                                 <tr role="row" class="odd">
-
                                                     <td class="sorting_1">{{ $i++ }}</td>
-                                                    <td>{{ $item->user->nama }}</td>
-                                                    <td>{{ $item->user->telepon }}</td>
-                                                    <td>{{ $item->user->email }}</td>
-
+                                                    <td>{{ $item->nama_fasilitas }}</td>
                                                     <td class="action">
-                                                        <a href="{{ url('penghuni/' . $item->id_penghuni . '/edit') }}"
+                                                        <a href="{{ url('fasilitas/' . $item->id_fasilitas . '/edit') }}"
                                                             class="btn btn-warning ">Edit</a>
                                                         <form onsubmit="return confirm('Yakin akan menghapus data')"
                                                             class="d-inline" method="POST"
-                                                            action="{{ url('penghuni/' . $item->id_penghuni) }}">
+                                                            action="{{ url('resource/' . $item->id_fasilitas) }}">
                                                             @csrf
                                                             @method('DELETE')
                                                             <button type="submit" name="submit" class="btn btn-danger "

@@ -26,7 +26,7 @@
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu" data-widget="tree">
             <li class="header">Dashboard</li>
-            <li class="{{ $title === 'Dashboard' ? 'active' : '' }}">
+            <li class="{{ Request::is('dashboard*') ? 'active' : '' }}">
                 <a href="/"> <i class="fa fa-dashboard"></i><span>Dashboard</span>
                     <span class="pull-right-container">
                     </span>
@@ -48,6 +48,7 @@
                 </a>
             </li>
             <li>
+            <li class="{{ Request::is('harga*') ? 'active' : '' }}">
                 <a href="/harga">
                     <i class="fa fa-th"></i> <span>Harga Kamar</span>
                     <span class="pull-right-container">
@@ -55,8 +56,9 @@
                 </a>
             </li>
             <li>
-                <a href="pages/widgets.html">
-                    <i class="fa fa-th"></i> <span>Neraca Lajur</span>
+            <li class="{{ Request::is('fasilitas*') ? 'active' : '' }}">
+                <a href="{{ url('/fasilitas') }}">
+                    <i class="fa fa-th"></i> <span>Fasilitas Kamar</span>
                     <span class="pull-right-container">
                     </span>
                 </a>

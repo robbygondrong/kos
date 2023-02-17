@@ -3,7 +3,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            {{-- {{ $title }} --}}
+            {{ $title }}
             <small>it all starts here</small>
         </h1>
         <ol class="breadcrumb">
@@ -21,18 +21,19 @@
             @include('backend.component.pesan')
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    {{-- <h3 class="box-title">{{ $title }}</h3> --}}
+                    <h3 class="box-title">{{ $title }}</h3>
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->
-                <form role="form" method="POST" action="{{ url('harga/' . $harga->id_harga) }}">
+
+                <form role="form" method="POST" action="{{ url('fasilitas/' . $data->id_fasilitas) }}">
                     @csrf
                     @method('PUT')
                     <div class="box-body">
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Nominal</label>
-                            <input type="number" name="nominal" class="form-control" id="nominal"
-                                value="{{ $harga->nominal }}" placeholder="Telp">
+                            <label for="nama_fasilitas">Nama Fasilitas</label>
+                            <input type="text" name="nama_fasilitas" class="form-control" id="nama_fasilitas"
+                                placeholder="tulikan fasilitan lainnya" value="{{ $data->nama_fasilitas }}">
                         </div>
                     </div>
                     <!-- /.box-body -->
@@ -40,6 +41,7 @@
 
                     <div class="box-footer">
                         <button type="submit" class="btn btn-primary">Submit</button>
+                        <a href="{{ url('/fasilitas') }}" class="btn btn-info">Back</a>
                     </div>
                 </form>
             </div>

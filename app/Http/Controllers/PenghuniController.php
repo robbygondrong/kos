@@ -9,6 +9,7 @@ use App\Models\DashboardUserModel;
 
 class PenghuniController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -16,13 +17,8 @@ class PenghuniController extends Controller
      */
     public function index()
     {
-        return view(
-            'backend.penghuni.index',
-            [
-                'title' => 'Penghuni',
-                'data' => Penghuni::all()
-            ]
-        );
+        $data = Penghuni::with('user')->get();
+        return view('backend.penghuni.index', compact('data'));
     }
 
     /**
@@ -32,8 +28,6 @@ class PenghuniController extends Controller
      */
     public function create()
     {
-
-
         return view(
             'backend.penghuni.create',
             [
@@ -53,24 +47,19 @@ class PenghuniController extends Controller
     {
         $request->validate(
             [
-                'nama' => 'required',
-                'telepon' => 'required|numeric',
-                'email' => 'required|email',
+                'user_id' => 'required',
+
             ],
             [
 
-                'nama.required' => 'Nama Wajib di Isi',
-                'telepon.required' => 'Telepon Wajib di Isi',
-                'telepon.numeric' => 'Wajib diisi Angka',
-                'email.required' => 'Email Wajib di Isi',
-                'email.email' => 'Format yang dituliskan salah'
+                'user_id.required' => 'User Wajib di pilih',
+
             ]
         );
 
         $data = [
-            'penghuni' => $request->nama,
-            'telepon' => $request->telepon,
-            'email' => $request->email,
+            'user_id' =>  $request->user_id,
+
         ];
         Penghuni::create($data);
         return redirect()->to('/penghuni')->with('success', 'Berhasil Tambah Data');
@@ -95,9 +84,11 @@ class PenghuniController extends Controller
      */
     public function edit($id)
     {
+
         $data = [
-            'title' => 'Update Data Penghuni',
-            'data' => Penghuni::where('id_penghuni', $id)->first()
+            'title' => 'Update Data Users',
+            'data' => Penghuni::where('id_penghuni', $id)->first(),
+            'user' => DashboardUserModel::where('level', '=', 0)->get()
         ];
         return view('backend.penghuni.edit', $data);
     }
@@ -113,24 +104,18 @@ class PenghuniController extends Controller
     {
         $request->validate(
             [
-                'nama' => 'required',
-                'telepon' => 'required|numeric',
-                'email' => 'required|email',
+                'user_id' => 'required',
+
             ],
             [
 
-                'nama.required' => 'Nama Wajib di Isi',
-                'telepon.required' => 'Telepon Wajib di Isi',
-                'telepon.numeric' => 'Wajib diisi Angka',
-                'email.required' => 'Email Wajib di Isi',
-                'email.email' => 'Format yang dituliskan salah'
+                'user_id.required' => 'user_id Wajib di Pilih',
+
             ]
         );
 
         $data = [
-            'penghuni' => $request->nama,
-            'telepon' => $request->telepon,
-            'email' => $request->email,
+            'user_id' => $request->user_id,
         ];
         Penghuni::where('id_penghuni', $id)->update($data);
         return redirect()->to('/penghuni')->with('success', 'Berhasil Update Data');

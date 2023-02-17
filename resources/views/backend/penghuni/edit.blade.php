@@ -26,24 +26,19 @@
                 <!-- /.box-header -->
                 <!-- form start -->
                 <form role="form" method="POST" action="{{ url('penghuni/' . $data->id_penghuni) }}">
-                    @csrf
                     @method('PUT')
+                    @csrf
                     <div class="box-body">
-
                         <div class="form-group">
-                            <label for="nama">Nama</label>
-                            <input type="varchar" name="nama" class="form-control" id="nama"
-                                value="{{ $data->penghuni }}" placeholder="Nama Lengkap">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Telepon</label>
-                            <input type="number" name="telepon" class="form-control" id="telepon"
-                                value="{{ $data->telepon }}" placeholder="Telp">
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email address</label>
-                            <input type="email" name="email" class="form-control" id="exampleInputEmail1"
-                                value="{{ $data->email }}" placeholder="Enter email">
+                            <label for="user_id">Nama</label>
+                            <select name="user_id" id="user_id">
+                                <option value="">--pilih penghuni--</option>
+                                @foreach ($user as $item)
+                                    <option value="{{ $item->id_user }}"
+                                        {{ old('user_id', $data->user_id) == $item->id_user ? 'selected' : null }}>
+                                        {{ $item->nama }}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                     <!-- /.box-body -->
@@ -51,6 +46,7 @@
 
                     <div class="box-footer">
                         <button type="submit" class="btn btn-primary">Submit</button>
+                        <a href="{{ url('/penghuni') }}" class="btn btn-info">Back</a>
                     </div>
                 </form>
             </div>

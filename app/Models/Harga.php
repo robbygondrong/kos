@@ -9,4 +9,5 @@ class Harga extends Model
 {
     protected $table = 'harga';
     protected $fillable = ['nominal'];
+    protected $primaryKey = 'id_harga';
 }

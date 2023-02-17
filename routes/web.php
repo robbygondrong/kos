@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DashboardUsersController;
+use App\Http\Controllers\FasilitasController;
 use App\Http\Controllers\HargaController;
 use App\Http\Controllers\PenghuniController;
 use App\Http\Controllers\UserController;
@@ -27,10 +28,13 @@ Route::get('/', function () {
 
 // Route::get('/user', [UserController::class, 'index']); //menampilkan halaman users
 Route::resource('/user', DashboardUsersController::class); //menampilkan halaman users
-Route::get('/user/create', [DashboardUsersController::class, 'create']); //menampilkan halaman tambah data user
+// Route::get('/user/create', [DashboardUsersController::class, 'create']); //menampilkan halaman tambah data user
 
 route::resource('/penghuni', PenghuniController::class); //menampilkan halaman penghuni
-Route::get('/penghuni/create', [PenghuniController::class, 'create']); //menampilkan halaman tambah data user
+// Route::get('/penghuni/create', [PenghuniController::class, 'create']); //menampilkan halaman tambah data user
 
-route::resource('/harga', HargaController::class); //menampilkan halaman penghuni
-Route::get('/harga/create', [HargaController::class, 'create']); //menampilkan halaman create data user
+route::resource('/harga', HargaController::class); //menampilkan halaman Harga
+// Route::get('/harga/create', [HargaController::class, 'create']); //menampilkan halaman create data Harga
+
+route::resource('/fasilitas', FasilitasController::class); //menampilkan halaman Fasilitas
+// Route::get('/fasilitas/create', [FasilitasController::class, 'create']); //menampilkan halaman create data fasilitas

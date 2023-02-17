@@ -22,6 +22,7 @@
                 <div class="box-header with-border">
                     <h3 class="box-title">{{ $title }}</h3>
                 </div>
+                @include('backend.component.pesan')
                 <!-- /.box-header -->
                 <!-- form start -->
                 <form role="form" method="POST" action="{{ url('/harga') }}">
